@@ -3686,6 +3686,14 @@ is chosen."
   ")))")
 
 ;;;###autoload
+(defun projectile-edit-nearest-dir-locals ()
+  "Edit the nearest `dir-locals-file'."
+  (let ((root-locals (dir-locals-find-file default-directory)))
+    (when root-locals
+      (find-file (car (last (dir-locals--all-files
+                             (or (car-safe root-locals) root-locals))))))))
+
+;;;###autoload
 (defun projectile-edit-dir-locals ()
   "Edit or create a .dir-locals.el file of the project."
   (interactive)
